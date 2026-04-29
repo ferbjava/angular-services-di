@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from './product.model';
 import { ProductsService } from './products.service';
 import { CartService } from '@core/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bot-catalog',
@@ -9,18 +10,13 @@ import { CartService } from '@core/cart.service';
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
 })
-export class CatalogComponent implements OnInit {
-  products: Product[] = [];
+export class CatalogComponent {
+  products: Observable<Product[]> = this.productsService.getProducts();
 
   constructor(
     private productsService: ProductsService,
     private cartService: CartService
   ) {}
-
-  ngOnInit(): void {
-    this.productsService.getProducts().subscribe((products) => (this.products = products));
-    setTimeout(() => this.productsService.refreshProducts(), 200);
-  }
 
 
   addToCart(product: Product) {
