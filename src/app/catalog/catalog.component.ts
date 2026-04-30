@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Product } from './product.model';
 import { ProductsService } from './products.service';
-import { CART_SERVICE_TOKEN, CartService } from '@core/cart.service';
+import { CartService } from '@core/cart.service';
 import { Observable } from 'rxjs';
 
 @Component({
