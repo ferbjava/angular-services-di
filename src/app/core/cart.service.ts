@@ -1,6 +1,7 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Injectable, InjectionToken, signal } from '@angular/core';
 import { Product } from '@catalog/product.model';
 
+export const CART_SERVICE_TOKEN = new InjectionToken<CartService>('CartService');
 @Injectable({ providedIn: 'root' })
 export class CartService {
   private cartItems = signal<Product[]>([]);

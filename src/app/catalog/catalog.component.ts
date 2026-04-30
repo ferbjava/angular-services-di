@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Product } from './product.model';
 import { ProductsService } from './products.service';
-import { CartService } from '@core/cart.service';
+import { CART_SERVICE_TOKEN, CartService } from '@core/cart.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ export class CatalogComponent {
 
   constructor(
     private productsService: ProductsService,
-    private cartService: CartService
+    @Inject(CART_SERVICE_TOKEN) private cartService: CartService
   ) {}
 
 
