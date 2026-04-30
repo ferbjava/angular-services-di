@@ -7,7 +7,7 @@ import { SiteHeaderComponent } from '@core/site-header/site-header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CatalogModule } from '@catalog/catalog.module';
 import { HttpClientModule } from '@angular/common/http';
-import { CartService } from '@core/cart.service';
+import { CART_OPTIONS_TOKEN, CartOptions, CartService } from '@core/cart.service';
 
 @NgModule({
   declarations: [AppComponent, SiteHeaderComponent],
@@ -19,15 +19,23 @@ import { CartService } from '@core/cart.service';
     HttpClientModule,
   ],
   providers: [
+    {
+      provide: CART_OPTIONS_TOKEN,
+      useValue: {
+        persistenceType: 'local',
+        persistenceKey: 'cart',
+      } as CartOptions,
+    },
+
     // CartService
-    // { 
+    // {
     //   provide: CartService,
     //   // useClass: CartService
     //   useFactory: () => {
     //     return new CartService();
     //   }
     // }
-],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
