@@ -9,7 +9,7 @@ import { EngineersService } from './engineers.service';
   declarations: [SquadCatalogComponent],
   imports: [SharedModule, SquadRoutingModule],
   providers: [
-    CartService,
+    // CartService,
     {
       provide: IProductsServiceToken,
       useClass: EngineersService,
@@ -21,6 +21,13 @@ import { EngineersService } from './engineers.service';
         persistenceKey: 'squad-cart',
       } as CartOptions,
     },
+    {
+      provide: CartService,
+      useFactory: (cartOptions: CartOptions) => {
+        return new CartService(cartOptions);
+      },
+      deps: [CART_OPTIONS_TOKEN], 
+    }
   ],
 })
 export class SquadModule {}
